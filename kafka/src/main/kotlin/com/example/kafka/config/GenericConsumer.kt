@@ -1,5 +1,6 @@
 package com.example.kafka.config
 
+import Person
 import org.springframework.stereotype.Component
 import java.util.function.Consumer
 
@@ -10,6 +11,3 @@ class GenericConsumer() : Consumer<Person> {
     }
 }
 
-data class Person(
-    val name: String,
-)
