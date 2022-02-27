@@ -7,7 +7,6 @@ class BizItem(
     val minBookingCount: Int,
     val maxBookingCount: Int,
     val paymentType: PaymentType,
-    val stock: Int,
     val price: Int,
     val normalPrice: Int,
     val isAutoAccept: Boolean = false,
@@ -24,7 +23,6 @@ class BizItem(
                 minBookingCount = 1,
                 maxBookingCount = 2,
                 paymentType = PaymentType.ONSITE_PAYMENT,
-                stock = 6,
                 price = 19900,
                 normalPrice = 20000,
             )

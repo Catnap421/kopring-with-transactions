@@ -1,12 +1,12 @@
 package booking.service
 
-import Schedule.entity.Schedule
+import schedule.entity.Schedule
 import booking.entity.BizItem
 import external.entity.Holiday
 import io.kotest.core.config.ExperimentalKotest
 import io.kotest.core.spec.style.ShouldSpec
-import io.kotest.matchers.shouldBe
 import io.mockk.spyk
+import schedule.entity.BookingOperationTime
 import java.time.LocalDate
 
 @ExperimentalKotest
@@ -25,17 +25,8 @@ class ScheduleCalculatorTest : ShouldSpec({
         val startDate = LocalDate.parse("2022-03-01")
         val endDate = LocalDate.parse("2022-03-31")
 
-        val daily = scheduleCalculator.calculateDaily(startDate = startDate, endDate = endDate, bizItem = bizItem, holidays = Holiday.getHolidayDummies(), schedules = Schedule.getScheduleDummies())
+        val daily = scheduleCalculator.calculateDaily(startDate = startDate, endDate = endDate, bizItem = bizItem, bookingOperationTime = BookingOperationTime.getBookingOperationTimeDummy())
         println(daily)
     }
 
-    should("calculate hourly")
-
-    should("calculate is business day") {
-        scheduleCalculator.calculateIsBusinessDay(LocalDate.now(), Schedule.getScheduleDummies()) shouldBe true
-    }
-
-    should("calculate is holiday") {
-        scheduleCalculator.calculateIsHoliday(LocalDate.now(), Holiday.getHolidayDummies()) shouldBe false
-    }
 })
