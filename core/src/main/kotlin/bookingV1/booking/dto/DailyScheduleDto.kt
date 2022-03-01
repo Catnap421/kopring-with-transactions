@@ -1,4 +1,4 @@
-package booking.dto
+package bookingV1.booking.dto
 
 import java.time.LocalDate
 

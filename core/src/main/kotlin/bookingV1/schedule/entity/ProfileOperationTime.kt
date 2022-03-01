@@ -1,4 +1,4 @@
-package schedule.entity
+package bookingV1.schedule.entity
 
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -14,8 +14,8 @@ class ProfileOperationTime(
 //    val registerSchedules: List<Schedule>,
 
     val operationDate: OperationDate,
-    val baseOperationTimes: List<Schedule>, // 기본 운영 시간
-    val temporaryOperationTimes: List<Schedule>, // 임시 운영 시간
+    val baseOperationTimes: List<ScheduleV1>, // 기본 운영 시간
+    val temporaryOperationTimes: List<ScheduleV1>, // 임시 운영 시간
 
     // todo 휴무일에 대한 엔티티 설계가 제대로 필요함
     val holidays: List<LocalDate>, // 법정 공휴일 중 쉬는 날 + 휴무일

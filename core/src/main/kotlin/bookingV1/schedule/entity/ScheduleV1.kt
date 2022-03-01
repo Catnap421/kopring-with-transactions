@@ -1,5 +1,6 @@
-package schedule.entity
+package bookingV1.schedule.entity
 
+import bookingV2.entity.StartEndTime
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -10,7 +11,13 @@ class ScheduleTemplate(
     init {
         val isRightMatched = when (templateType) {
             TemplateType.DAY -> templateName in listOf(
-                TemplateName.MONDAY, TemplateName.TUESDAY, TemplateName.WEDNESDAY, TemplateName.THURSDAY, TemplateName.FRIDAY, TemplateName.SATURDAY, TemplateName.SUNDAY
+                TemplateName.MONDAY,
+                TemplateName.TUESDAY,
+                TemplateName.WEDNESDAY,
+                TemplateName.THURSDAY,
+                TemplateName.FRIDAY,
+                TemplateName.SATURDAY,
+                TemplateName.SUNDAY
             )
             TemplateType.WEEK -> templateName in listOf(
                 TemplateName.WEEKDAY, TemplateName.WEEKEND
@@ -41,15 +48,15 @@ enum class TemplateName {
     CUSTOM
 }
 
-data class StartEndTime(
+data class StartEndTimeV1(
     val startTime: LocalTime,
     val endTime: LocalTime,
     val stock: Int,
 )
 
-class Schedule(
+class ScheduleV1(
     val template: ScheduleTemplate,
-    val startEndTimes: List<StartEndTime>,
+    val startEndTimes: List<StartEndTimeV1>,
     val description: String? = null,
     val stock: Int,
 ) {
@@ -57,7 +64,7 @@ class Schedule(
 
     constructor(
         template: ScheduleTemplate,
-        startEndTimes: List<StartEndTime>,
+        startEndTimes: List<StartEndTimeV1>,
         description: String? = null,
         date: LocalDate,
         stock: Int,
@@ -69,15 +76,15 @@ class Schedule(
     }
 
     companion object {
-        fun getScheduleDummies(): List<Schedule> {
+        fun getScheduleDummies(): List<ScheduleV1> {
             return listOf(
-                Schedule(
+                ScheduleV1(
                     template = ScheduleTemplate(
                         templateType = TemplateType.DAY,
                         templateName = TemplateName.MONDAY,
                     ),
                     startEndTimes = listOf(
-                        StartEndTime(
+                        StartEndTimeV1(
                             startTime = LocalTime.parse("10:00"),
                             endTime = LocalTime.parse("22:00"),
                             stock = 10,
@@ -86,28 +93,28 @@ class Schedule(
                     description = "",
                     stock = 10,
                 ),
-                Schedule(
+                ScheduleV1(
                     template = ScheduleTemplate(
                         templateType = TemplateType.DAY,
                         templateName = TemplateName.TUESDAY
                     ),
                     startEndTimes = listOf(
-                        StartEndTime(
+                        StartEndTimeV1(
                             startTime = LocalTime.parse("10:00"),
                             endTime = LocalTime.parse("22:00"),
-                            stock = 10,
+                            stock = 10
                         )
                     ),
                     description = "",
-                    stock = 10,
+                    stock = 10
                 ),
-                Schedule(
+                ScheduleV1(
                     template = ScheduleTemplate(
                         templateType = TemplateType.DAY,
                         templateName = TemplateName.WEDNESDAY
                     ),
                     startEndTimes = listOf(
-                        StartEndTime(
+                        StartEndTimeV1(
                             startTime = LocalTime.parse("10:00"),
                             endTime = LocalTime.parse("22:00"),
                             stock = 10,
@@ -116,13 +123,13 @@ class Schedule(
                     description = "",
                     stock = 10
                 ),
-                Schedule(
+                ScheduleV1(
                     template = ScheduleTemplate(
                         templateType = TemplateType.DAY,
                         templateName = TemplateName.FRIDAY
                     ),
                     startEndTimes = listOf(
-                        StartEndTime(
+                        StartEndTimeV1(
                             startTime = LocalTime.parse("10:00"),
                             endTime = LocalTime.parse("22:00"),
                             stock = 10,
@@ -131,13 +138,13 @@ class Schedule(
                     description = "",
                     stock = 10,
                 ),
-                Schedule(
+                ScheduleV1(
                     template = ScheduleTemplate(
                         templateType = TemplateType.DAY,
                         templateName = TemplateName.SATURDAY
                     ),
                     startEndTimes = listOf(
-                        StartEndTime(
+                        StartEndTimeV1(
                             startTime = LocalTime.parse("10:00"),
                             endTime = LocalTime.parse("17:00"),
                             stock = 10,
@@ -146,13 +153,13 @@ class Schedule(
                     description = "",
                     stock = 10,
                 ),
-                Schedule(
+                ScheduleV1(
                     template = ScheduleTemplate(
                         templateType = TemplateType.DAY,
                         templateName = TemplateName.SUNDAY
                     ),
                     startEndTimes = listOf(
-                        StartEndTime(
+                        StartEndTimeV1(
                             startTime = LocalTime.parse("10:00"),
                             endTime = LocalTime.parse("17:00"),
                             stock = 10,

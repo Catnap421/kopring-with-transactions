@@ -1,4 +1,4 @@
-package booking.entity
+package bookingV1.booking.entity
 
 class Booking(
     val id: Long,

@@ -1,4 +1,4 @@
-package extension
+package bookingV1.extension
 
 import java.time.LocalDate
 import java.time.LocalDateTime

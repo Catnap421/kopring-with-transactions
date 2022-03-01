@@ -1,4 +1,4 @@
-package external.entity
+package bookingV1.external.entity
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

@@ -1,4 +1,4 @@
-package external.entity
+package bookingV1.external.entity
 
 data class Member(
     val id: Long,

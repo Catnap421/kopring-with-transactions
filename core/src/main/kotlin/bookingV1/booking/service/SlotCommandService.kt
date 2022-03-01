@@ -1,6 +1,6 @@
-package booking.service
+package bookingV1.booking.service
 
-import booking.entity.Slot
+import bookingV1.booking.entity.Slot
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 

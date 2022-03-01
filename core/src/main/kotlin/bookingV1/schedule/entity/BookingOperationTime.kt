@@ -1,6 +1,6 @@
-package schedule.entity
+package bookingV1.schedule.entity
 
-import extension.rangeTo
+import bookingV1.extension.rangeTo
 import java.time.DayOfWeek
 import java.time.LocalDate
 
@@ -35,8 +35,8 @@ class BookingOperationTime(
     val targetId: Long,
 
     val operationDate: OperationDate,
-    val baseOperationTimes: List<Schedule>, // 기본 운영 시간
-    val temporaryOperationTimes: MutableList<Schedule> = mutableListOf(), // 임시 운영 시간
+    val baseOperationTimes: List<ScheduleV1>, // 기본 운영 시간
+    val temporaryOperationTimes: MutableList<ScheduleV1> = mutableListOf(), // 임시 운영 시간
 
     val statutoryHolidays: List<LocalDate>, // todo 법정휴무일에 대한 엔티티 설계가 제대로 필요함(ENUM with 날짜)
     val regularHolidays: Set<DayOfWeek>, // 정기 휴무일(주로 요일)
@@ -53,7 +53,7 @@ class BookingOperationTime(
 ) {
 
     fun calculateIsBusinessDay(date: LocalDate): Boolean {
-        return calculateIsOperationDate(date) && !calculateIsHoliday(date) && calculateIsOperationDay(date)
+        return (calculateIsOperationDate(date) && !calculateIsHoliday(date) && calculateIsBaseOperationDay(date)) || calculateIsTemporaryOperationDay(date)
     }
 
     internal fun calculateIsOperationDate(date: LocalDate): Boolean {
@@ -67,9 +67,13 @@ class BookingOperationTime(
         return date in statutoryHolidays || date.dayOfWeek in regularHolidays || date in extraHolidays
     }
 
-    internal fun calculateIsOperationDay(date: LocalDate): Boolean {
+    internal fun calculateIsBaseOperationDay(date: LocalDate): Boolean {
         return date.dayOfWeek.name in baseOperationTimes.map { it.template.templateName.name }.toList()
         // todo: every 나 week type의 경우면 무조건 true 임
+    }
+
+    internal fun calculateIsTemporaryOperationDay(date: LocalDate): Boolean {
+        return date in temporaryOperationTimes.map { it.date }.toList()
     }
 
     fun calculateDailyBusiness(date: LocalDate){ // 하루 단위 재고는 하루 단위의 예약이 아닌 경우엔 재고 컨트롤이 빡셀 필요가 없다.
@@ -109,7 +113,7 @@ class BookingOperationTime(
                     startDate = LocalDate.parse("2022-02-20"),
                     endDate = LocalDate.parse("2022-03-28")
                 ),
-                baseOperationTimes = Schedule.getScheduleDummies(),
+                baseOperationTimes = ScheduleV1.getScheduleDummies(),
                 statutoryHolidays = listOf(LocalDate.parse("2022-02-02")),
                 regularHolidays = setOf(DayOfWeek.FRIDAY),
                 extraHolidays = mutableListOf(LocalDate.parse("2022-03-01")),

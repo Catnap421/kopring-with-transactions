@@ -1,4 +1,4 @@
-package booking.entity
+package bookingV1.booking.entity
 
 import java.time.LocalDate
 import java.time.LocalDateTime

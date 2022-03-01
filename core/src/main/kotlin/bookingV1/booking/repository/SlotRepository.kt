@@ -1,4 +1,4 @@
-package booking.repository
+package bookingV1.booking.repository
 
 import org.springframework.data.repository.CrudRepository
 import javax.persistence.Entity

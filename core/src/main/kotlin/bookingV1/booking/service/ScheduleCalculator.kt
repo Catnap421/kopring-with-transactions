@@ -1,12 +1,10 @@
-package booking.service
+package bookingV1.booking.service
 
-import booking.dto.DailyScheduleDto
-import booking.dto.HourlyScheduleDto
-import booking.entity.BizItem
-import extension.rangeTo
-import external.entity.Holiday
+import bookingV1.booking.dto.DailyScheduleDto
+import bookingV1.booking.entity.BizItem
+import bookingV1.extension.rangeTo
+import bookingV1.schedule.entity.BookingOperationTime
 import org.springframework.stereotype.Service
-import schedule.entity.*
 import java.time.LocalDate
 
 @Service

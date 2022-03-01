@@ -1,12 +1,13 @@
 package booking.service
 
-import schedule.entity.Schedule
-import booking.entity.BizItem
-import external.entity.Holiday
+import bookingV1.booking.entity.BizItem
+import bookingV1.booking.service.ScheduleCalculator
+import bookingV1.booking.service.SlotCommandService
+import bookingV1.external.entity.Holiday
 import io.kotest.core.config.ExperimentalKotest
 import io.kotest.core.spec.style.ShouldSpec
 import io.mockk.spyk
-import schedule.entity.BookingOperationTime
+import bookingV1.schedule.entity.BookingOperationTime
 import java.time.LocalDate
 
 @ExperimentalKotest

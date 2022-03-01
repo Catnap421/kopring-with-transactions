@@ -1,7 +1,8 @@
 package schedule.entity
 
-import extension.DateIterator
-import extension.DateProgression
+import bookingV1.extension.DateIterator
+import bookingV1.extension.DateProgression
+import bookingV1.schedule.entity.BookingOperationTime
 import io.kotest.core.config.ExperimentalKotest
 import io.kotest.core.spec.style.ShouldSpec
 import java.time.LocalDate
@@ -15,7 +16,7 @@ class BookingOperationTimeTest : ShouldSpec({
         val endDate = LocalDate.parse("2022-03-31")
 
         for (date in startDate..endDate) {
-            println("date: $date, day: ${date.dayOfWeek}, isHoliday: ${bookingOperationTime.calculateIsHoliday(date)}, isOperationDay: ${bookingOperationTime.calculateIsOperationDay(date)}")
+            println("date: $date, day: ${date.dayOfWeek}, isHoliday: ${bookingOperationTime.calculateIsHoliday(date)}, isOperationDay: ${bookingOperationTime.calculateIsBaseOperationDay(date)}")
             println("isBusinessDay: ${bookingOperationTime.calculateIsBusinessDay(date)}")
         }
     }
